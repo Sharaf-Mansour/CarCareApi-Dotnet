@@ -1,23 +1,23 @@
+global using Dapper;
+global using Microsoft.Data.Sqlite;
+global using System.Data;
+ using Scalar.AspNetCore;
+
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-
+builder.Services.AddEndpointsApiExplorer();
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+app.MapOpenApi();
+app.MapScalarApiReference();
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
+string[] summaries = [
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+];
+
+app.MapGet("/",() => Results.Redirect("/scalar/v1"));
 
 app.MapGet("/weatherforecast", () =>
 {
