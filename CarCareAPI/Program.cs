@@ -10,20 +10,9 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddTransient<IStorageBroker, StorageBroker>();
 var app = builder.Build();
-
 app.MapOpenApi();
 app.MapScalarApiReference();
-
 app.UseHttpsRedirection();
-
 app.RegisterRoutes();
-
 app.MapGet("/", () => Results.Redirect("/scalar/v1"));
-
-
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

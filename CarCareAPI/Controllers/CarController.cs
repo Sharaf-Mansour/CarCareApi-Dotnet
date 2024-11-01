@@ -11,18 +11,21 @@ public static class CarController
             return Results.Ok(cars);
         })
         .WithName("GetCars");
+
         app.MapGet("/cars/{carId}", async (IStorageBroker storageBroker, int carId) =>
         {
             var car = await storageBroker.SelectCarById(carId);
             return car is not null ? Results.Ok(car) : Results.NotFound();
         })
         .WithName("GetCarById");
+
         app.MapPost("/cars", async (IStorageBroker storageBroker, Car car) =>
         {
             await storageBroker.InsertCar(car);
             return Results.Created($"/cars/{car.Id}", car);
         })
         .WithName("PostCar");
+
         app.MapPut("/cars/{carId}", async (IStorageBroker storageBroker, string carId, Car car) =>
         {
             car.Id = carId;
@@ -30,6 +33,7 @@ public static class CarController
             return Results.NoContent();
         })
         .WithName("PutCar");
+
         app.MapDelete("/cars/{carId}", async (IStorageBroker storageBroker, int carId) =>
         {
             await storageBroker.DeleteCar(carId);

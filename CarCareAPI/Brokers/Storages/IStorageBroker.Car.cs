@@ -2,9 +2,9 @@
 namespace CarCareAPI.Brokers.Storages;
 public partial interface IStorageBroker
 {
-    Task InsertCar(Car car);
-    Task<List<Car>> SelectAllCars();
-    Task<Car> SelectCarById(int carId);
-    Task UpdateCar(Car car);
-    Task DeleteCar(int carId);
+    ValueTask InsertCar(Car car);
+    ValueTask<List<Car>> SelectAllCars();
+    ValueTask<Car> SelectCarById(int carId);
+    ValueTask UpdateCar(Car car);
+    ValueTask DeleteCar(int carId);
 }
