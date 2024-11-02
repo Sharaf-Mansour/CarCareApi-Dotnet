@@ -2,6 +2,7 @@
 namespace CarCareAPI.Brokers.Storages;
 public partial class StorageBroker : IStorageBroker
 {
+    
     public async ValueTask InsertCar(Car car)
     {
         using var connection = CreateConnection();
