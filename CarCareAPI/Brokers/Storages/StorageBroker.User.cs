@@ -12,17 +12,17 @@ public partial class StorageBroker : IStorageBroker
         using var connection = CreateConnection();
         return (await connection.QueryAsync<User>("SELECT * FROM Users;")).ToList();
     }
-    public async ValueTask<User> SelectUserByIdAsync(int Id)
+    public async ValueTask<User> SelectUserByIdAsync(string Id)
     {
         using var connection = CreateConnection();
-        return await connection.QueryFirstOrDefaultAsync<User>("SELECT * FROM Users WHERE Id = @Id;", new { Id = Id });
+        return await connection.QueryFirstOrDefaultAsync<User>("SELECT * FROM Users WHERE Id = @Id;",new { Id = Id });
     }
     public async ValueTask UpdateUserAsync(User user)
     {
         using var connection = CreateConnection();
         await connection.ExecuteAsync("UPDATE Users SET Email = @Email, Password = @Password, Username = @Username WHERE Id = @Id;", user);
     }
-    public async ValueTask DeleteUserAsync(int Id)
+    public async ValueTask DeleteUserAsync(string Id)
     {
         using var connection = CreateConnection();
         await connection.ExecuteAsync("DELETE FROM Users WHERE Id = @Id;", new { Id = Id });

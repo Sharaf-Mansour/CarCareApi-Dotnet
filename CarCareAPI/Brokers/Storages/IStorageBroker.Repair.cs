@@ -4,7 +4,7 @@ public partial interface IStorageBroker
 {
     ValueTask InsertRepairAsync(Repair repair);
     IQueryable<Repair> SelectAllRepairsAsync();
-    ValueTask<Repair> SelectRepairByIdAsync(int repairId);
+    ValueTask<Repair> SelectRepairByIdAsync(string repairId);
     ValueTask UpdateRepairAsync(Repair repair);
-    ValueTask DeleteRepairAsync(int repairId);
+    ValueTask DeleteRepairAsync(string repairId);
 }

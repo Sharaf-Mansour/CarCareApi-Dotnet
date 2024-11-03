@@ -5,7 +5,7 @@ public partial interface IStorageBroker
 {
     ValueTask InsertUserAsync(User user);
     IQueryable<User> SelectAllUsersAsync();
-    ValueTask SelectUserByIdAsync(int userId);
+    ValueTask SelectUserByIdAsync(string userId);
     ValueTask UpdateUserAsync(User user);
-    ValueTask DeleteUserAsync(int UserId);
+    ValueTask DeleteUserAsync(string UserId);
 }

@@ -15,7 +15,7 @@ public partial class StorageBroker : IStorageBroker
     public async ValueTask<Repair> SelectRepairByIdAsync(string repairId)
     {
         using var connection = CreateConnection();
-        return await connection.QueryFirstOrDefaultAsync<Repair>("SELECT * FROM Repairs WHERE String = @RepairId;",new { RepairId = repairId });
+        return await connection.QueryFirstOrDefaultAsync<Repair>("SELECT * FROM Repairs WHERE Id = @RepairId;", new { RepairId = repairId });
     }
     public async ValueTask UpdateRepairAsync(Repair repair)
     {
@@ -24,8 +24,8 @@ public partial class StorageBroker : IStorageBroker
     }
     public async ValueTask DeleteRepairAsync(string repairId)
     {
-        using var connection = CreateConnection();
-        await connection.ExecuteAsync("DELETE FROM Repairs WHERE String = @RepairId;", new { RepairId = repairId });
+        await using var connection = CreateConnection();
+        await connection.ExecuteAsync("DELETE FROM Repairs WHERE Id = @RepairId;", new { RepairId = repairId });
     }
 }
 
