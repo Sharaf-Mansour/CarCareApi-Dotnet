@@ -6,6 +6,7 @@ public partial class StorageBroker : IStorageBroker
     {
         using var connection = CreateConnection();
         await connection.executeAsync("INSERT INTO CarClass (Id, Name) VALUES (@Id, @Name);", carClass);
+        return carClass;
     }
     public async ValueTask<List<CarClass>> SelectAllCarClassesAsync()
     {

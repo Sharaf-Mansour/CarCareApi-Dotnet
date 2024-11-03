@@ -2,10 +2,11 @@
 namespace CarCareAPI.Brokers.Storages;
 public partial class StorageBroker : IStorageBroker
 {
-    public async ValueTask InsertRepairAsync(Repair repair)
+    public async ValueTask<Repair> InsertRepairAsync(Repair repair)
     {
         using var connection = CreateConnection();
-        await connection.ExecuteAsync("INSERT INTO Repair (Id, CarId, Description, Cost, Date) VALUES (@Id, @CarId, @Description, @Cost, @Date);", repair);
+        await connection.ExecuteAsync("INSERT INTO Repair (Id, Cost, TypeId, LastRepairKm, Date, CarId) VALUES (@Id, @Cost, @TypeId, @LastRepairKm, @Date, @CarId);", repair);
+        return repair;
     }
     public async ValueTask<List<Repair>> SelectAllRepairsAsync()
     {
@@ -20,7 +21,7 @@ public partial class StorageBroker : IStorageBroker
     public async ValueTask UpdateRepairAsync(Repair repair)
     {
         using var connection = CreateConnection();
-        await connection.ExecuteAsync("UPDATE Repair SET CarId = @CarId, Description = @Description, Cost = @Cost, Date = @Date WHERE Id = @Id;", repair);
+        await connection.ExecuteAsync("UPDATE Repair SET Cost = @Cost, TypeId = @TypeId, LastRepairKm = @LastRepairKm, Date = @Date, CarId = @CarId WHERE Id = @Id;", repair);
     }
     public async ValueTask DeleteRepairAsync(string repairId)
     {
