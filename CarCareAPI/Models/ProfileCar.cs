@@ -1,8 +1,6 @@
-﻿namespace CarCareAPI.Models
+﻿namespace CarCareAPI.Models;
+public class ProfileCar
 {
-    public class ProfileCar
-    {
-        public string? ProfileId { get; set; }
-        public string? CarId { get; set; }
-    }
+    public string? ProfileId { get; set; }
+    public string? CarId { get; set; }
 }

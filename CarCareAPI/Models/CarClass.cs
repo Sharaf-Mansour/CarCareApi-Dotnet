@@ -1,8 +1,6 @@
-﻿namespace CarCareAPI.Models
+﻿namespace CarCareAPI.Models;
+public class CarClass
 {
-    public class CarClass
-    {
-        public string? Id { get; set; }
-        public string? Name { get; set; }
-    }
+    public string? Id { get; set; }
+    public string? Name { get; set; }
 }

@@ -1,8 +1,6 @@
-﻿namespace CarCareAPI.Models
+﻿namespace CarCareAPI.Models;
+public class ProfileRepairType
 {
-    public class ProfileRepairType
-    {
-        public string? ProfileId { get; set; }
-        public string? RepairTypeId { get; set; }
-    }
+    public string? ProfileId { get; set; }
+    public string? RepairTypeId { get; set; }
 }

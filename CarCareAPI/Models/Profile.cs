@@ -1,10 +1,8 @@
-﻿namespace CarCareAPI.Models
+﻿namespace CarCareAPI.Models;
+public class Profile
 {
-    public class Profile
-    {
-        public string? Id { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public string? Email { get; set; }
-    }
+    public string? Id { get; set; }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? Email { get; set; }
 }
