@@ -1,6 +1,6 @@
 ﻿using CarCareAPI.Models;
 namespace CarCareAPI.Brokers.Storages;
-public partial class StorageBroker : IStorageBroker  
+public partial class StorageBroker : IStorageBroker
 {
     public async ValueTask<CarClass> InsertCarClassAsync(CarClass carClass)
     {
