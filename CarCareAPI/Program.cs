@@ -6,11 +6,11 @@ using CarCareAPI.Controllers;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddOpenApi();
+//builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddTransient<IStorageBroker, StorageBroker>();
 var app = builder.Build();
-app.MapOpenApi();
+//app.MapOpenApi();
 app.MapScalarApiReference();
 app.UseHttpsRedirection();
 app.RegisterRoutes();
