@@ -2,11 +2,11 @@
 namespace CarCareAPI.Brokers.Storages;
 public partial class StorageBroker : IStorageBroker
 {
-    
     public async ValueTask InsertCarAsync(Car car)
     {
         using var connection = CreateConnection();
-        await connection.ExecuteAsync("INSERT INTO Car (Id, Make, Model, Year, VIN) VALUES (@Id, @Make, @Model, @Year, @VIN);", car);
+        await connection.ExecuteAsync("INSERT INTO Car (Id, Make, Model, Year, ClassId, LicenseExpirationDate, ExaminationDate, NotifyEvery, Km, ProfileId) VALUES (@Id, @Make, @Model, @Year, @ClassId, @LicenseExpirationDate, @ExaminationDate, @NotifyEvery, @Km, @ProfileId);", car);
+
     }
     public async ValueTask<List<Car>> SelectAllCarsAsync()
     {
@@ -16,16 +16,18 @@ public partial class StorageBroker : IStorageBroker
     public async ValueTask<Car> SelectCarByIdAsync(string carId)
     {
         using var connection = CreateConnection();
-        return await connection.QueryFirstOrDefaultAsync<Car>("SELECT * FROM Cars WHERE Id = @carId;", new {carId} );
+        return await connection.QueryFirstOrDefaultAsync<Car>("SELECT * FROM Car WHERE Id = @carId;", new { carId });
     }
     public async ValueTask UpdateCarAsync(Car car)
     {
         using var connection = CreateConnection();
-        await connection.ExecuteAsync("UPDATE Cars SET Make = @Make, Model = @Model, Year = @Year, VIN = @VIN WHERE Id = @Id;", car);
+        await connection.ExecuteAsync("UPDATE Car SET Make = @Make, Model = @Model, Year = @Year, ClassId = @ClassId, LicenseExpirationDate = @LicenseExpirationDate, ExaminationDate = @ExaminationDate, NotifyEvery = @NotifyEvery, Km = @Km, ProfileId = @ProfileId WHERE Id = @Id;", car);
+
     }
     public async ValueTask DeleteCarAsync(string carId)
     {
         using var connection = CreateConnection();
-        await connection.ExecuteAsync("DELETE FROM Cars WHERE Id = @carId;", new { carId });
+        await connection.ExecuteAsync("DELETE FROM Car WHERE Id = @carId;", new { carId });
+
     }
 }
