@@ -2,11 +2,10 @@
 namespace CarCareAPI.Brokers.Storages;
 public partial class StorageBroker : IStorageBroker
 {
-    public async ValueTask<Repair> InsertRepairAsync(Repair repair)
+    public async ValueTask InsertRepairAsync(Repair repair)
     {
         using var connection = CreateConnection();
         await connection.ExecuteAsync("INSERT INTO Repair (Id, Cost, TypeId, LastRepairKm, Date, CarId) VALUES (@Id, @Cost, @TypeId, @LastRepairKm, @Date, @CarId);", repair);
-        return repair;
     }
     public async ValueTask<List<Repair>> SelectAllRepairsAsync()
     {

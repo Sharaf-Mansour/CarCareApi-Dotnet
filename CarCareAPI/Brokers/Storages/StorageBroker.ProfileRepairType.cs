@@ -5,12 +5,12 @@ public partial class StorageBroker : IStorageBroker
     public async ValueTask InsertProfileRepairTypeAsync(ProfileRepairType profileRepairType)
     {
         using var connection = CreateConnection();
-        await connection.executeAsync("INSERT INTO ProfileRepairType (ProfileId, RepairTypeId) VALUES (@ProfileId, @RepairTypeId);", profileRepairType);
+        await connection.ExecuteAsync("INSERT INTO ProfileRepairType (ProfileId, RepairTypeId) VALUES (@ProfileId, @RepairTypeId);", profileRepairType);
     }
-    public IQueryable<ProfileRepairType> SelectAllProfileRepairTypesAsync()
+    public async ValueTask<List<ProfileRepairType>> SelectAllProfileRepairTypesAsync()
     {
         using var connection = CreateConnection();
-        return connection.Query<ProfileRepairType>("SELECT * FROM ProfileRepairType;");
+        return (await connection.QueryAsync<ProfileRepairType>("SELECT * FROM ProfileRepairType;")).AsList();
     }
     public async ValueTask<ProfileRepairType> SelectProfileRepairTypeByIdAsync(string profileRepairTypeId)
     {
