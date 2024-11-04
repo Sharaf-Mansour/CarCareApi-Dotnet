@@ -10,7 +10,7 @@ public partial class StorageBroker : IStorageBroker
     public async ValueTask<List<ArchivedRepair>> SelectAllArchivedRepairsAsync()
     {
         using var connection = CreateConnection();
-        return (await connection.QueryAsync<ArchivedRepair>("SELECT * FROM ArchivedRepair;")).ToList();
+        return (await connection.QueryAsync<ArchivedRepair>("SELECT * FROM ArchivedRepair;")).AsList();
     }
     public async ValueTask<ArchivedRepair> SelectArchivedRepairByIdAsync(string archivedRepairId)
     {
