@@ -12,7 +12,7 @@ public static class CarController
         })
         .WithName("GetCars");
 
-        app.MapGet("/cars/{carId}", async (IStorageBroker storageBroker, int carId) =>
+        app.MapGet("/cars/{carId}", async (IStorageBroker storageBroker, string carId) =>
         {
             var car = await storageBroker.SelectCarByIdAsync(carId);
             return car is not null ? Results.Ok(car) : Results.NotFound();
@@ -34,7 +34,7 @@ public static class CarController
         })
         .WithName("PutCar");
 
-        app.MapDelete("/cars/{carId}", async (IStorageBroker storageBroker, int carId) =>
+        app.MapDelete("/cars/{carId}", async (IStorageBroker storageBroker, string carId) =>
         {
             await storageBroker.DeleteCarAsync(carId);
             return Results.NoContent();
