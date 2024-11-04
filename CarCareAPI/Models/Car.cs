@@ -9,6 +9,6 @@ public class Car
     public string? LicenseExpirationDate { get; set; }
     public string? ExaminationDate { get; set; }
     public string? NotifyEvery { get; set; }
-    public int? Km { get; set; }
+    public double? Km { get; set; }
     public string? ProfileId { get; set; }
 }
