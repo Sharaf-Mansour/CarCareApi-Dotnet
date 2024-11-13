@@ -1,5 +1,6 @@
 ﻿using CarCareAPI.Brokers.Storages;
 using CarCareAPI.models;
+using Microsoft.AspNetCore.Builder;
 namespace CarCareAPI.Controllers;
 public static class CarClassController
 {
@@ -10,21 +11,21 @@ public static class CarClassController
             var carClasses = await storageBroker.SelectAllCarClassesAsync();
             return Results.Ok(carClasses);
         })
-            .Withname("GetCarClasses");
+            .WithName("GetCarClasses");
 
         app.MapGet("/car-classes/{carclassid}", async (IStorageBroker storageBroker, string carclassid) =>
         {
-            var carClass = await storageBroker.SelectCarClassByidAsync(carclassid);
+            var carClass = await storageBroker.SelectCarClassByIdAsync(carclassid);
             return carClass is not null ? Results.Ok(carClass) : Results.NotFound();
         })
-            .Withname("GetCarClassByid");
+            .WithName("GetCarClassByid");
 
         app.MapPost("/car-classes", async (IStorageBroker storageBroker, CarClass carClass) =>
         {
             await storageBroker.InsertCarClassAsync(carClass);
             return Results.Created($"/car-classes/{carClass.id}", carClass);
         })
-            .Withname("PostCarClass");
+            .WithName("PostCarClass");
 
         app.MapPut("/car-classes/{carclassid}", async (IStorageBroker storageBroker, string carclassid, CarClass carClass) =>
         {
@@ -32,13 +33,13 @@ public static class CarClassController
             await storageBroker.UpdateCarClassAsync(carClass);
             return Results.NoContent();
         })
-            .Withname("PutCarClass");
+            .WithName("PutCarClass");
 
         app.MapDelete("/car-classes/{carclassid}", async (IStorageBroker storageBroker, string carclassid) =>
         {
             await storageBroker.DeleteCarClassAsync(carclassid);
             return Results.NoContent();
         })
-            .Withname("DeleteCarClass");
+            .WithName("DeleteCarClass");
     }
 }

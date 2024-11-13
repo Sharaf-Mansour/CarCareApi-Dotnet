@@ -1,5 +1,7 @@
 ﻿using CarCareAPI.Brokers.Storages;
-using CarCareAPI.Models;
+using CarCareAPI.models;
+using Microsoft.AspNetCore.Builder;
+
 namespace CarCareAPI.Controllers;
 public static class CarController
 {
@@ -22,13 +24,13 @@ public static class CarController
         app.MapPost("/cars", async (IStorageBroker storageBroker, Car car) =>
         {
             await storageBroker.InsertCarAsync(car);
-            return Results.Created($"/cars/{car.Id}", car);
+            return Results.Created($"/cars/{car.id}", car);
         })
         .WithName("PostCar");
 
         app.MapPut("/cars/{carId}", async (IStorageBroker storageBroker, string carId, Car car) =>
         {
-            car.Id = carId;
+            car.id = carId;
             await storageBroker.UpdateCarAsync(car);
             return Results.NoContent();
         })

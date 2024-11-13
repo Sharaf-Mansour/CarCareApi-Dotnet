@@ -8,11 +8,9 @@ public class CarService (IStorageBroker storageBroker) : ICarService
     public async ValueTask<List<Car>> RetrieveAllCarsAsync()
         => await storageBroker.SelectAllCarsAsync();
     public async ValueTask<Car> RetrieveCarByidAsync(string carid)
-        => await storageBroker.SelectCarByidAsync(carid);
+        => await storageBroker.SelectCarByIdAsync(carid);
     public async ValueTask ModifyCarAsync(Car car)
         => await storageBroker.UpdateCarAsync(car);
     public async ValueTask RemoveCarByidAsync(string carid)
         => await storageBroker.DeleteCarAsync(carid);
 }
-
-

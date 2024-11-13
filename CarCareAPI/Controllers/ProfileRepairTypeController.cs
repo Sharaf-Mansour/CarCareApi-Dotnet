@@ -11,21 +11,21 @@ public static class ProfileRepairTypeController
             var profileRepairTypes = await storageBroker.SelectAllProfileRepairTypesAsync();
             return Results.Ok(profileRepairTypes);
         })
-        .Withname("GetProfileRepairTypes");
+        .WithName("GetProfileRepairTypes");
 
         app.MapGet("/profile-repair-types/{profilerepairtypeid}", async (IStorageBroker storageBroker, string profilerepairtypeid) =>
         {
-            var profileRepairType = await storageBroker.SelectProfileRepairTypeByidAsync(profilerepairtypeid);
+            var profileRepairType = await storageBroker.SelectProfileRepairTypeByIdAsync(profilerepairtypeid);
             return profileRepairType is not null ? Results.Ok(profileRepairType) : Results.NotFound();
         })
-        .Withname("GetProfileRepairTypeByid");
+        .WithName("GetProfileRepairTypeByid");
 
         app.MapPost("/profile-repair-types", async (IStorageBroker storageBroker, ProfileRepairType profileRepairType) =>
         {
             await storageBroker.InsertProfileRepairTypeAsync(profileRepairType);
             return Results.Created($"/profile-repair-types/{profileRepairType.profileid}", profileRepairType);
         })
-            .Withname("PostProfileRepairType");
+            .WithName("PostProfileRepairType");
         //profileid
 
         app.MapPut("/profile-repair-types/{profilerepairtypeid}", async (IStorageBroker storageBroker, string profilerepairtypeid, ProfileRepairType profileRepairType) =>
@@ -34,14 +34,14 @@ public static class ProfileRepairTypeController
             await storageBroker.UpdateProfileRepairTypeAsync(profileRepairType);
             return Results.NoContent();
         })
-            .Withname("PutProfileRepairType");
+            .WithName("PutProfileRepairType");
 
         app.MapDelete("/profile-repair-types/{profilerepairtypeid}", async (IStorageBroker storageBroker, string profilerepairtypeid) =>
         {
             await storageBroker.DeleteProfileRepairTypeAsync(profilerepairtypeid);
             return Results.NoContent();
         })
-            .Withname("DeleteProfileRepairType");
+            .WithName("DeleteProfileRepairType");
 
     }
 }

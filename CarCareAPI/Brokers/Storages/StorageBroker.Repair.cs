@@ -1,4 +1,4 @@
-﻿using CarCareAPI.Models;
+﻿using CarCareAPI.models;
 namespace CarCareAPI.Brokers.Storages;
 public partial class StorageBroker : IStorageBroker
 {
@@ -28,4 +28,3 @@ public partial class StorageBroker : IStorageBroker
         await connection.ExecuteAsync("DELETE FROM Repairs WHERE Id = @RepairId;", new { RepairId = repairId });
     }
 }
-

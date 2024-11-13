@@ -10,21 +10,21 @@ public static class RepairController
             var repairs = await storageBroker.SelectAllRepairsAsync();
             return Results.Ok(repairs);
         })
-        .Withname("GetRepairs");
+        .WithName("GetRepairs");
 
         app.MapGet("/repairs/{repairid}", async (IStorageBroker storageBroker, string repairid) =>
         {
-            var repair = await storageBroker.SelectRepairByidAsync(repairid);
+            var repair = await storageBroker.SelectRepairByIdAsync(repairid);
             return repair is not null ? Results.Ok(repair) : Results.NotFound();
         })
-        .Withname("GetRepairByid");
+        .WithName("GetRepairByid");
 
         app.MapPost("/repairs", async (IStorageBroker storageBroker, Repair repair) =>
         {
             await storageBroker.InsertRepairAsync(repair);
             return Results.Created($"/repairs/{repair.id}", repair);
         })
-        .Withname("PostRepair");
+        .WithName("PostRepair");
 
         app.MapPut("/repairs/{repairid}", async (IStorageBroker storageBroker, string repairid, Repair repair) =>
         {
@@ -32,13 +32,13 @@ public static class RepairController
             await storageBroker.UpdateRepairAsync(repair);
             return Results.NoContent();
         })
-        .Withname("PutRepair");
+        .WithName("PutRepair");
 
         app.MapDelete("/repairs/{repairid}", async (IStorageBroker storageBroker, string repairid) =>
         {
             await storageBroker.DeleteRepairAsync(repairid);
             return Results.NoContent();
         })
-        .Withname("DeleteRepair");
+        .WithName("DeleteRepair");
     }
 }

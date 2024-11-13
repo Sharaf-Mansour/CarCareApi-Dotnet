@@ -11,21 +11,21 @@ public static class ProfileController
             var profiles = await storageBroker.SelectAllProfilesAsync();
             return Results.Ok(profiles);
         })
-        .Withname("GetProfiles");
+        .WithName("GetProfiles");
 
         app.MapGet("/profiles/{profileid}", async (IStorageBroker storageBroker, string profileid) =>
         {
-            var profile = await storageBroker.SelectProfileByidAsync(profileid);
+            var profile = await storageBroker.SelectProfileByIdAsync(profileid);
             return profile is not null ? Results.Ok(profile) : Results.NotFound();
         })
-        .Withname("GetProfileByid");
+        .WithName("GetProfileByid");
 
         app.MapPost("/profiles", async (IStorageBroker storageBroker, Profile profile) =>
         {
             await storageBroker.InsertProfileAsync(profile);
             return Results.Created($"/profiles/{profile.id}", profile);
         })
-        .Withname("PostProfile");
+        .WithName("PostProfile");
 
         app.MapPut("/profiles/{profileid}", async (IStorageBroker storageBroker, string profileid, Profile profile) =>
         {
@@ -33,13 +33,13 @@ public static class ProfileController
             await storageBroker.UpdateProfileAsync(profile);
             return Results.NoContent();
         })
-        .Withname("PutProfile");
+        .WithName("PutProfile");
 
         app.MapDelete("/profiles/{profileid}", async (IStorageBroker storageBroker, string profileid) =>
         {
             await storageBroker.DeleteProfileAsync(profileid);
             return Results.NoContent();
         })
-        .Withname("DeleteProfile");
+        .WithName("DeleteProfile");
     }
 }

@@ -1,4 +1,4 @@
-﻿using CarCareAPI.Models;
+﻿using CarCareAPI.models;
 namespace CarCareAPI.Brokers.Storages;
 public partial class StorageBroker : IStorageBroker
 {

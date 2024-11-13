@@ -8,7 +8,7 @@ public class ProfileService(IStorageBroker storageBroker) : IProfileService
     public async ValueTask<List<Profile>> RetrieveAllProfilesAsync()
         => await storageBroker.SelectAllProfilesAsync();
     public async ValueTask<Profile> RetrieveProfileByidAsync(string profileid)
-        => await storageBroker.SelectProfileByidAsync(profileid);
+        => await storageBroker.SelectProfileByIdAsync(profileid);
     public async ValueTask ModifyProfileAsync(Profile profile)
         => await storageBroker.UpdateProfileAsync(profile);
     public async ValueTask RemoveProfileByidAsync(string profileid)

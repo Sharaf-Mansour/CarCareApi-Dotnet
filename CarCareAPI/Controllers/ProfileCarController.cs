@@ -11,21 +11,21 @@ public static class ProfileCarController
             var profileCars = await storageBroker.SelectAllProfileCarsAsync();
             return Results.Ok(profileCars);
         })
-        .Withname("GetProfileCars");
+        .WithName("GetProfileCars");
 
         app.MapGet("/profile-cars/{profilecarid}", async (IStorageBroker storageBroker, string profilecarid) =>
         {
-            var profileCar = await storageBroker.SelectProfileCarByidAsync(profilecarid);
+            var profileCar = await storageBroker.SelectProfileCarByIdAsync(profilecarid);
             return profileCar is not null ? Results.Ok(profileCar) : Results.NotFound();
         })
-        .Withname("GetProfileCarByid");
+        .WithName("GetProfileCarByid");
 
         app.MapPost("/profile-cars", async (IStorageBroker storageBroker, ProfileCar profileCar) =>
         {
             await storageBroker.InsertProfileCarAsync(profileCar);
             return Results.Created($"/profile-cars/{profileCar.profileid}", profileCar);
         })
-        .Withname("PostProfileCar");
+        .WithName("PostProfileCar");
 
         app.MapPut("/profile-cars/{profilecarid}", async (IStorageBroker storageBroker, string profilecarid, ProfileCar profileCar) =>
         {
@@ -33,13 +33,13 @@ public static class ProfileCarController
             await storageBroker.UpdateProfileCarAsync(profileCar);
             return Results.NoContent();
         })
-        .Withname("PutProfileCar");
+        .WithName("PutProfileCar");
 
         app.MapDelete("/profile-cars/{profilecarid}", async (IStorageBroker storageBroker, string profilecarid) =>
         {
             await storageBroker.DeleteProfileCarAsync(profilecarid);
             return Results.NoContent();
         })
-        .Withname("DeleteProfileCar");
+        .WithName("DeleteProfileCar");
     }
 }

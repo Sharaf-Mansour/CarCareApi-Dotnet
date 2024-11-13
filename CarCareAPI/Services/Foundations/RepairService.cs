@@ -8,7 +8,7 @@ public class RepairService (IStorageBroker storageBroker) : IRepairService
     public async ValueTask<List<Repair>> RetrieveAllRepairsAsync()
         => await storageBroker.SelectAllRepairsAsync();
     public async ValueTask<Repair> RetrieveRepairByidAsync(string repairid)
-        => await storageBroker.SelectRepairByidAsync(repairid);
+        => await storageBroker.SelectRepairByIdAsync(repairid);
     public async ValueTask ModifyRepairAsync(Repair repair)
         => await storageBroker.UpdateRepairAsync(repair);
     public async ValueTask RemoveRepairByidAsync(string repairid)

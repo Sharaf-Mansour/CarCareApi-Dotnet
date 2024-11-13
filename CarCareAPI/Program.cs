@@ -23,6 +23,6 @@ var app = builder.Build();
 //app.MapOpenApi();
 app.MapScalarApiReference();
 app.UseHttpsRedirection();
-app.RegisterRoutes();
+//app.RegisterRoutes();
 app.MapGet("/", () => Results.Redirect("/scalar/v1"));
 app.Run();

@@ -10,21 +10,21 @@ public static class GasController
             var gases = await storageBroker.SelectAllGasesAsync();
             return Results.Ok(gases);
         })
-            .Withname("GetGases");
+            .WithName("GetGases");
 
         app.MapGet("/gases/{gasid}", async (IStorageBroker storageBroker, string gasid) =>
         {
-            var gas = await storageBroker.SelectGasByidAsync(gasid);
+            var gas = await storageBroker.SelectGasByIdAsync(gasid);
             return gas is not null ? Results.Ok(gas) : Results.NotFound();
         })
-            .Withname("GetGasByid");
+            .WithName("GetGasByid");
 
         app.MapPost("/gases", async (IStorageBroker storageBroker, Gas gas) =>
         {
             await storageBroker.InsertGasAsync(gas);
             return Results.Created($"/gases/{gas.id}", gas);
         })
-            .Withname("PostGas");
+            .WithName("PostGas");
 
         app.MapPut("/gases/{gasid}", async (IStorageBroker storageBroker, string gasid, Gas gas) =>
         {
@@ -32,13 +32,13 @@ public static class GasController
             await storageBroker.UpdateGasAsync(gas);
             return Results.NoContent();
         })
-            .Withname("PutGas");
+            .WithName("PutGas");
 
         app.MapDelete("/gases/{gasid}", async (IStorageBroker storageBroker, string gasid) =>
         {
             await storageBroker.DeleteGasAsync(gasid);
             return Results.NoContent();
         })
-            .Withname("DeleteGas");
+            .WithName("DeleteGas");
     }
 }
