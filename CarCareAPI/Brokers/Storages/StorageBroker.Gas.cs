@@ -27,4 +27,9 @@ public partial class StorageBroker : IStorageBroker
         await using var connection = CreateConnection();
         await connection.ExecuteAsync("delete from Gas where Id = @GasId;", new { GasId = gasId });
     }
+    public async ValueTask<List<Gas>> TrackGasAsync(string carId)
+    {
+        using var connection = CreateConnection();
+        return (await connection.QueryAsync<Gas>("select * from Gas where CarId = @CarId;", new { CarId = carId })).ToList();
+    }
 }

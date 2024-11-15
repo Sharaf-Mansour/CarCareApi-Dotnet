@@ -7,4 +7,5 @@ public partial interface IStorageBroker
     ValueTask<Gas> SelectGasByIdAsync(string gasId);
     ValueTask UpdateGasAsync(Gas gas);
     ValueTask DeleteGasAsync(string gasId);
+    ValueTask<List<Gas>> TrackGasAsync(string carId);
 }
