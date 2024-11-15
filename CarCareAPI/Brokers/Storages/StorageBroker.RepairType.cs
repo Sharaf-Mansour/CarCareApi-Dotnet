@@ -7,6 +7,11 @@ public partial class StorageBroker : IStorageBroker
         using var connection = CreateConnection();
         await connection.ExecuteAsync("INSERT INTO RepairType (Id, Name, ReminderKm, ProfileId) VALUES (@Id, @Name, @ReminderKm, @ProfileId);", repairType);
     }
+    public async ValueTask InsertCustomRepairTypeAsync(RepairType repairType)
+    {
+        using var connection = CreateConnection();
+        await connection.ExecuteAsync("INSERT INTO RepairType (Id,Name, ReminderKm, ProfileId) VALUES (@Id,@Name, @ReminderKm, @ProfileId);", repairType);
+    }
     public async ValueTask<List<RepairType>> SelectAllRepairTypesAsync()
     {
         using var connection = CreateConnection();
