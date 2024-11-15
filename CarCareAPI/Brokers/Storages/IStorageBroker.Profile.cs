@@ -7,4 +7,5 @@ public partial interface IStorageBroker
     ValueTask<Profile> SelectProfileByIdAsync(string profileId);
     ValueTask UpdateProfileAsync(Profile profile);
     ValueTask DeleteProfileAsync(string profileId);
+    ValueTask <Profile> SelectProfileByEmailAsync(string email);
 }

@@ -17,6 +17,11 @@ public partial class StorageBroker : IStorageBroker
         using var connection = CreateConnection();
         return await connection.QueryFirstOrDefaultAsync<Profile>("SELECT * FROM Profile WHERE Id = @ProfileId;", new { ProfileId = profileId });
     }
+    public async ValueTask<Profile> SelectProfileByEmailAsync(string email)
+    {
+        using var connection = CreateConnection();
+        return await connection.QueryFirstOrDefaultAsync<Profile>("SELECT * FROM Profile WHERE Email = @Email;", new { Email = email });
+    }
     public async ValueTask UpdateProfileAsync(Profile profile)
     {
         using var connection = CreateConnection();
